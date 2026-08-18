@@ -1,0 +1,55 @@
+{
+  "name": "@abarisain/pi-silent-turn",
+  "version": "0.1.0",
+  "description": "Suppress unsolicited replies from Telegram, pi-intercom, cron jobs, and other background turns",
+  "license": "MIT",
+  "author": "Arnaud Barisain-Monrose",
+  "type": "module",
+  "main": "index.ts",
+  "files": [
+    "index.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-coding-agent",
+    "pi-extension",
+    "omp",
+    "oh-my-pi",
+    "telegram",
+    "notifications"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abarisain/pi-plugins.git",
+    "directory": "plugins/pi-silent-turn"
+  },
+  "homepage": "https://github.com/abarisain/pi-plugins/tree/master/plugins/pi-silent-turn",
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-ai": "*"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-ai": {
+      "optional": true
+    }
+  },
+  "pi": {
+    "extensions": [
+      "index.ts"
+    ]
+  },
+  "omp": {
+    "extensions": [
+      "index.ts"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "@abarisain/pi-plugins",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Arnaud's plugins for the pi coding agent (and omp)",
+  "license": "MIT",
+  "author": "Arnaud Barisain-Monrose",
+  "type": "module",
+  "workspaces": [
+    "plugins/*"
+  ],
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-coding-agent",
+    "omp",
+    "oh-my-pi"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abarisain/pi-plugins.git"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@types/node": "^22.20.1",
+    "typescript": "^5.7.0",
+    "@earendil-works/pi-ai": "*"
+  },
+  "pi": {
+    "extensions": [
+      "plugins/*/index.ts"
+    ]
+  },
+  "omp": {
+    "extensions": [
+      "plugins/*/index.ts"
+    ]
+  }
+}

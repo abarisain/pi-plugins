@@ -1,0 +1,54 @@
+{
+  "name": "@abarisain/pi-claude-transcript",
+  "version": "0.1.0",
+  "description": "Claude-Code-style compact transcript for the pi coding agent (and omp): one \u273b summary per turn instead of a wall of tool rows",
+  "license": "MIT",
+  "author": "Arnaud Barisain-Monrose",
+  "contributors": [
+    "avhagedorn (pi-compact-transcript, the work this is forked from)"
+  ],
+  "type": "module",
+  "main": "index.ts",
+  "files": [
+    "index.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-coding-agent",
+    "pi-extension",
+    "omp",
+    "oh-my-pi",
+    "transcript",
+    "tui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abarisain/pi-plugins.git",
+    "directory": "plugins/pi-claude-transcript"
+  },
+  "homepage": "https://github.com/abarisain/pi-plugins/tree/master/plugins/pi-claude-transcript",
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    }
+  },
+  "pi": {
+    "extensions": [
+      "index.ts"
+    ]
+  },
+  "omp": {
+    "extensions": [
+      "index.ts"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
