@@ -7,6 +7,7 @@ Personal collection of plugins for the [pi coding agent](https://github.com/eare
 |---|---|---|
 | [@abarisain/pi-claude-transcript](plugins/pi-claude-transcript) | Claude-Code-style compact transcript: one `✻` summary per turn instead of a wall of tool rows | pi, omp (summaries only) |
 | [@abarisain/pi-silent-turn](plugins/pi-silent-turn) | `end_turn_silently` — suppress unsolicited replies from Telegram, pi-intercom, cron jobs, and other background turns | pi |
+| [@abarisain/pi-markdown-memory](plugins/pi-markdown-memory) | No bullshit memory store. Folders & Markdown, global & project stores, that's it | pi |
 
 ## Install
 

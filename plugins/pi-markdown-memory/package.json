@@ -1,0 +1,52 @@
+{
+  "name": "@abarisain/pi-markdown-memory",
+  "version": "0.1.0",
+  "description": "No bullshit memory store for the pi coding agent. Folders & Markdown, global & project stores, that's it",
+  "license": "MIT",
+  "author": "Arnaud Barisain-Monrose",
+  "contributors": [
+    "Mario Zechner (pi-code memory, the index format this is based on)",
+    "ilovepixelart (pi-code)"
+  ],
+  "type": "module",
+  "main": "index.ts",
+  "files": [
+    "index.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-coding-agent",
+    "pi-extension",
+    "memory",
+    "markdown"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abarisain/pi-plugins.git",
+    "directory": "plugins/pi-markdown-memory"
+  },
+  "homepage": "https://github.com/abarisain/pi-plugins/tree/main/plugins/pi-markdown-memory",
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-ai": "*"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-ai": {
+      "optional": true
+    }
+  },
+  "pi": {
+    "extensions": [
+      "index.ts"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
