@@ -17,12 +17,16 @@
  */
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { registerTelegramActivityHandler } from "@llblab/pi-telegram/activity";
+// Types only: these are erased, so they cost nothing at runtime and cannot fail
+// to resolve on a host that does not have pi-telegram at all.
 import type {
   TelegramActivityContext,
   TelegramActivityEvent,
+  TelegramActivityHandlerRegistration,
 } from "@llblab/pi-telegram/activity";
 import type { TelegramDeliveryHandle } from "@llblab/pi-telegram/delivery";
+import { homedir } from "node:os";
+import path from "node:path";
 
 /** Telegram rejects an edit whose text is unchanged, and rate-limits chatter. */
 const EDIT_INTERVAL_MS = Math.max(500, Number(process.env.PI_TELEGRAM_THINKING_INTERVAL_MS ?? 2000));
@@ -103,8 +107,49 @@ async function clear(activityId: string, ctx: TelegramActivityContext): Promise<
   }
 }
 
+/**
+ * Resolve pi-telegram at runtime instead of importing it statically.
+ *
+ * How this extension is installed decides whether a bare specifier works. As an
+ * npm package it sits next to pi-telegram under the agent's node_modules and
+ * resolves normally; installed as a git checkout (`pi install
+ * git:github.com/...`) it lives in its own directory with no node_modules beside
+ * it, and the same import is MODULE_NOT_FOUND — which pi reports as a failed
+ * extension, taking the whole session down with it.
+ *
+ * So: try the bare specifier, then the agent directory's own package root, and
+ * give up quietly. An absent pi-telegram is a perfectly ordinary state (any
+ * instance that does not hold the bridge), and it must never cost a boot.
+ */
+async function loadActivityApi(): Promise<
+  { registerTelegramActivityHandler: (r: TelegramActivityHandlerRegistration) => () => void } | undefined
+> {
+  const agentDir = process.env.PI_CODING_AGENT_DIR ?? path.join(homedir(), ".pi", "agent");
+  const candidates = [
+    "@llblab/pi-telegram/activity",
+    path.join(agentDir, "npm/node_modules/@llblab/pi-telegram/api/activity.ts"),
+  ];
+  for (const specifier of candidates) {
+    try {
+      return await import(specifier);
+    } catch {
+      // next candidate
+    }
+  }
+  return undefined;
+}
+
 export default function telegramThinking(_pi: ExtensionAPI) {
-  registerTelegramActivityHandler({
+  // Floating on purpose (extension setup is synchronous), so it must swallow
+  // everything: an unhandled rejection here is an uncaughtException, and pi exits.
+  void install().catch(() => {});
+}
+
+async function install(): Promise<void> {
+  const api = await loadActivityApi();
+  if (!api) return;
+  // Throws if the id is taken — a double load is not worth a dead session.
+  api.registerTelegramActivityHandler({
     id: "abarisain-telegram-thinking",
     handle: async (event: TelegramActivityEvent, ctx: TelegramActivityContext) => {
       switch (event.type) {
