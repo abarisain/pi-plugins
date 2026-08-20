@@ -1,10 +1,17 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": ["ESNext"],
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable",
+      "DOM.AsyncIterable"
+    ],
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "strict": true,
@@ -12,5 +19,7 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["plugins/*/**/*.ts"]
+  "include": [
+    "plugins/*/**/*.ts"
+  ]
 }

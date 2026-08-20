@@ -24,10 +24,11 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@earendil-works/pi-ai": "*",
     "@earendil-works/pi-coding-agent": "*",
+    "@llblab/pi-telegram": "^0.36.7",
     "@types/node": "^22.20.1",
-    "typescript": "^5.7.0",
-    "@earendil-works/pi-ai": "*"
+    "typescript": "^5.7.0"
   },
   "pi": {
     "extensions": [
